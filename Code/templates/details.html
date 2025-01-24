@@ -1,0 +1,28 @@
+<!-- templates/details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ job.req_name }}</h1>
+        <div class="job-details">
+            <p><strong>Location:</strong> {{ job.location.city }}, {{ job.location.state }}, {{ job.location.country }}</p>
+            <p><strong>Status:</strong> {{ job.status }}</p>
+            <h2>Job Description</h2>
+            <p>{{ job.description }}</p>
+            
+            <h3>Job Postings</h3>
+            <ul>
+                {% for posting in job.postings %}
+                <li>{{ posting.sitename }} (Duration: {{ posting.duration }} days)</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{{ url_for('index') }}" class="back-link">Back to Job Listings</a>
+    </div>
+</body>
+</html>
